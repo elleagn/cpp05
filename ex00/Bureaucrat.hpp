@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/04/28 10:25:08 by gozon            ###   ########.fr       */
+/*   Updated: 2025/04/28 10:54:23 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Bureaucrat {
         std::string const _name;
         int _grade;
 
-        void _setGrade(int grade);
+        bool _setGrade(int grade);
 
     public:
 
