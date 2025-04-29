@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/04/28 10:58:56 by gozon            ###   ########.fr       */
+/*   Updated: 2025/04/29 09:40:11 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ bool Bureaucrat::_setGrade(int grade) {
 
     try {
         if (grade > 150)
-            throw Bureaucrat::GradeTooHighException();
-        if (grade < 0)
             throw Bureaucrat::GradeTooLowException();
+        if (grade < 1)
+            throw Bureaucrat::GradeTooHighException();
     }
     catch(std::exception &e) {
         std::cout << e.what() << std::endl;
@@ -41,7 +41,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name) {
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name) {
-    this->_setGrade(grade);
+    if (!this->_setGrade(grade)) {
+        std::cout << "Error: could not create bureaucrat " << name;
+        std::cout << " with invalid grade " << grade << ".\n";
+    }
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
@@ -49,6 +52,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
     if (this != &src) {
        this-> _setGrade(src._grade);
     }
+    std::cout << "Warning: name of a bureaucrat cannot be changed." << std::endl;
     return (*this);
 }
 
@@ -62,8 +66,11 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::promote() {
     if (this->_setGrade(this->_grade - 1)) {
-        std::cout << "Bureaucrat " << this->_name << "has been promoted to grade ";
+        std::cout << "Bureaucrat " << this->_name << " has been promoted to grade ";
         std::cout << this->_grade << std::endl;
+    }
+    else {
+        std::cout << "Bureaucrat " << this->_name << " cannot be promoted." << std::endl;
     }
 }
 
@@ -73,19 +80,20 @@ void Bureaucrat::demote() {
         std::cout << this->_grade << std::endl;
     }
     else {
-        std::cout << "Bureaucrat " << this->_name << "cannot be demoted." << std::endl;
+        std::cout << "Bureaucrat " << this->_name << " cannot be demoted." << std::endl;
     }
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return ("Error: cannot attribute a grade above 150.");
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Exception: grade too low.");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return ("Error: cannot attribute a grade under 1.");
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Exception: grade too high.");
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
     out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-    out << "." << std::endl;
+    out << ".";
+    return (out);
 }
