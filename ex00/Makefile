@@ -6,13 +6,13 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2025/04/24 07:15:42 by gozon            ###   ########.fr        #
+#    Updated: 2025/05/25 18:12:22 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ex00
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98
+CFLAGS = -Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98 -fPIE
 SRC_FILES =  Bureaucrat.cpp main.cpp
 OBJ_DIR = objects
 OBJ = $(SRC_FILES:%.cpp=$(OBJ_DIR)/%.o)
@@ -31,7 +31,6 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
-	@mkdir $(OBJ_DIR)/Materia
 
 clean:
 	@rm -rf $(OBJ_DIR)
