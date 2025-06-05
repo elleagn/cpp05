@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/05/26 17:31:34 by gozon            ###   ########.fr       */
+/*   Updated: 2025/06/05 08:58:28 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Form {
 
     private:
 
-        std::string const _name;
-        bool _isSigned;
-        int const _execGrade;
-        int const _signGrade;
+        std::string const name;
+        bool isSigned;
+        int const execGrade;
+        int const signGrade;
 
     public:
 

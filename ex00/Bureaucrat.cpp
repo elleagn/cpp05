@@ -6,13 +6,13 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/04/29 09:40:11 by gozon            ###   ########.fr       */
+/*   Updated: 2025/06/05 08:57:51 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-bool Bureaucrat::_setGrade(int grade) {
+bool Bureaucrat::setGrade(int grade) {
 
     try {
         if (grade > 150)
@@ -21,14 +21,13 @@ bool Bureaucrat::_setGrade(int grade) {
             throw Bureaucrat::GradeTooHighException();
     }
     catch(std::exception &e) {
-        std::cout << e.what() << std::endl;
         return (false);
     }
-    this->_grade = grade;
+    this->grade = grade;
     return (true);
 }
 
-Bureaucrat::Bureaucrat(): _name("Anonymous"), _grade(150) {
+Bureaucrat::Bureaucrat(): name("Anonymous"), grade(150) {
 
 }
 
@@ -36,12 +35,12 @@ Bureaucrat::~Bureaucrat() {
 
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name) {
-    this->_setGrade(src._grade);
+Bureaucrat::Bureaucrat(const Bureaucrat& src): name(src.name), grade(src.grade) {
+
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name) {
-    if (!this->_setGrade(grade)) {
+Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name) {
+    if (!this->setGrade(grade)) {
         std::cout << "Error: could not create bureaucrat " << name;
         std::cout << " with invalid grade " << grade << ".\n";
     }
@@ -50,46 +49,46 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name) {
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
 
     if (this != &src) {
-       this-> _setGrade(src._grade);
+       this-> setGrade(src.grade);
     }
     std::cout << "Warning: name of a bureaucrat cannot be changed." << std::endl;
     return (*this);
 }
 
 std::string Bureaucrat::getName() const {
-    return (this->_name);
+    return (this->name);
 }
 
 int Bureaucrat::getGrade() const {
-    return (this->_grade);
+    return (this->grade);
 }
 
 void Bureaucrat::promote() {
-    if (this->_setGrade(this->_grade - 1)) {
-        std::cout << "Bureaucrat " << this->_name << " has been promoted to grade ";
-        std::cout << this->_grade << std::endl;
+    if (this->setGrade(this->grade - 1)) {
+        std::cout << "Bureaucrat " << this->name << " has been promoted to grade ";
+        std::cout << this->grade << std::endl;
     }
     else {
-        std::cout << "Bureaucrat " << this->_name << " cannot be promoted." << std::endl;
+        std::cout << "Bureaucrat " << this->name << " cannot be promoted." << std::endl;
     }
 }
 
 void Bureaucrat::demote() {
-    if (this->_setGrade(this->_grade + 1)) {
-        std::cout << "Bureaucrat " << this->_name << " has been demoted to grade ";
-        std::cout << this->_grade << std::endl;
+    if (this->setGrade(this->grade + 1)) {
+        std::cout << "Bureaucrat " << this->name << " has been demoted to grade ";
+        std::cout << this->grade << std::endl;
     }
     else {
-        std::cout << "Bureaucrat " << this->_name << " cannot be demoted." << std::endl;
+        std::cout << "Bureaucrat " << this->name << " cannot be demoted." << std::endl;
     }
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return ("Exception: grade too low.");
+    return ("Grade too low.");
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return ("Exception: grade too high.");
+    return ("Grade too high.");
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
