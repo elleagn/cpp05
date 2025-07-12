@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/12 17:48:40 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/12 17:59:06 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void Bureaucrat::demote() {
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
 
-    return ("Exception: Bureaucrat's grade too low.");
+    return ("Bureaucrat: Exception: grade too low.");
 
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 
-    return ("Exception: Bureaucrat's grade too high.");
+    return ("Bureaucrat: Exception: grade too high.");
 
 }
 
