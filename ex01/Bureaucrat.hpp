@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/04/28 10:54:23 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/12 17:41:20 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <string>
 # include <exception>
 
+// COLORS
+
+#define RED "\033[31m"
+#define RESET "\033[0m"
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
+
 class Bureaucrat {
 
     private:
@@ -26,9 +33,10 @@ class Bureaucrat {
 
         bool _setGrade(int grade);
 
+        Bureaucrat();
+
     public:
 
-        Bureaucrat();
         ~Bureaucrat();
         Bureaucrat(const Bureaucrat& src);
         Bureaucrat(const std::string& name, int grade);
