@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/12 17:06:40 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/12 17:48:40 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name) {
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name) {
+    this->_setGrade(grade);
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
@@ -57,6 +58,7 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::promote() {
 
+    this->_setGrade(_grade - 1);
     std::cout << "Bureaucrat " << this->_name << " has been promoted to grade ";
     std::cout << this->_grade << std::endl;
 
@@ -64,6 +66,7 @@ void Bureaucrat::promote() {
 
 void Bureaucrat::demote() {
 
+    this->_setGrade(_grade + 1);
     std::cout << "Bureaucrat " << this->_name << " has been demoted to grade ";
     std::cout << this->_grade << std::endl;
 
