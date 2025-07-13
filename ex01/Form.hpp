@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:55:45 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 19:08:51 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Form {
         std::string getName() const;
         int         getExecGrade() const;
         int         getSignGrade() const;
-bool                isSigned() const;
+        bool        isSigned() const;
 
         void    beSigned(const Bureaucrat& bureaucrat);
 

@@ -6,12 +6,14 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:06:13 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:42:00 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 22:52:23 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
+
+/* ************************ CONSTRUCTORS / DESTRUCTORS ********************** */
 
 Form::Form(): _name("undefined"), _signed(0), _execGrade(150),
 _signGrade(150) {
@@ -42,12 +44,32 @@ _name(name), _signed(0), _execGrade(execGrade), _signGrade(signGrade) {
 
 }
 
+/* ************************************************************************** */
+
+/* *********************** OPERATORS **************************************** */
+
 Form& Form::operator=(const Form& src) {
     (void)src;
     std::cout << "Cannot assign a form to another because of const attributes";
     std::cout << std::endl;
     return (*this);
 }
+
+std::ostream& operator<<(std::ostream& out, const Form& form) {
+    std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
+                << form.getSignGrade() << " and executed with a grade higher than "
+                << form.getExecGrade() << ". ";
+    std::cout << "It's currently ";
+    if (!form.isSigned()) {
+        std::cout << "not ";
+    }
+    std::cout << "signed.";
+    return (out);
+}
+
+/* ************************************************************************** */
+
+/* ************************ GETTERS ***************************************** */
 
 std::string Form::getName() const {
 
@@ -72,6 +94,8 @@ bool Form::isSigned() const {
 
 }
 
+/* ************************ FORM ACTIONS ************************************ */
+
 void Form::beSigned(const Bureaucrat& bureaucrat) {
 
     if (bureaucrat.getGrade() > _signGrade)
@@ -79,6 +103,10 @@ void Form::beSigned(const Bureaucrat& bureaucrat) {
     _signed = true;
 
 }
+
+/* ************************************************************************** */
+
+/* ************************** EXCEPTIONS ************************************ */
 
 const char* Form::GradeTooLowException::what() const throw() {
     return ("Form: Exception: grade too low.");
@@ -88,14 +116,4 @@ const char* Form::GradeTooHighException::what() const throw() {
     return ("Form: Exception: grade too high.");
 }
 
-std::ostream& operator<<(std::ostream& out, const Form& form) {
-    std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
-                << form.getSignGrade() << " and executed with a grade higher than "
-                << form.getExecGrade() << ". ";
-    std::cout << "It's currently ";
-    if (!form.isSigned()) {
-        std::cout << "not ";
-    }
-    std::cout << "signed.";
-    return (out);
-}
+/* ************************************************************************** */

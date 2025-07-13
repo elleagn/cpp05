@@ -6,11 +6,13 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/12 17:59:06 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 22:49:27 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+/* ***************************** UTILS ************************************** */
 
 bool Bureaucrat::_setGrade(int grade) {
 
@@ -22,6 +24,10 @@ bool Bureaucrat::_setGrade(int grade) {
     return (true);
 
 }
+
+/* ************************************************************************** */
+
+/* ************************ CONSTRUCTORS / DESTRUCTORS ********************** */
 
 Bureaucrat::Bureaucrat(): _name("Anonymous"), _grade(150) {
 
@@ -39,6 +45,10 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name) {
     this->_setGrade(grade);
 }
 
+/* ************************************************************************** */
+
+/* *********************** OPERATORS **************************************** */
+
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
 
     if (this != &src) {
@@ -48,6 +58,18 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src) {
     return (*this);
 }
 
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
+
+    out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    out << ".";
+    return (out);
+
+}
+
+/* ************************************************************************** */
+
+/* *********************** GETTERS ****************************************** */
+
 std::string Bureaucrat::getName() const {
     return (this->_name);
 }
@@ -55,6 +77,10 @@ std::string Bureaucrat::getName() const {
 int Bureaucrat::getGrade() const {
     return (this->_grade);
 }
+
+/* ************************************************************************** */
+
+/* ********************* BUREAUCRAT ACTIONS ********************************* */
 
 void Bureaucrat::promote() {
 
@@ -72,6 +98,10 @@ void Bureaucrat::demote() {
 
 }
 
+/* ************************************************************************** */
+
+/* ************************** EXCEPTIONS ************************************ */
+
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
 
     return ("Bureaucrat: Exception: grade too low.");
@@ -84,10 +114,4 @@ const char* Bureaucrat::GradeTooHighException::what() const throw() {
 
 }
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
-
-    out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-    out << ".";
-    return (out);
-
-}
+/* ************************************************************************** */
