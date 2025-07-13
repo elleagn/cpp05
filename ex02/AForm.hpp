@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 22:26:18 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 22:40:48 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ class AForm {
         };
 
         class GradeTooLowException: public std::exception {
+            const char* what() const throw();
+        };
+
+        class UnsignedFormException: public std::exception {
             const char* what() const throw();
         };
 

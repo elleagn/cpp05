@@ -13,6 +13,8 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
+/* ************************ CONSTRUCTORS / DESTRUCTORS ********************** */
+
 AForm::AForm(): _name("undefined"), _signed(0), _execGrade(150),
 _signGrade(150) {
 
@@ -23,7 +25,7 @@ AForm::~AForm() {
 }
 
 AForm::AForm(const AForm& src): _name(src._name), _signed(src._signed),
-_execGrade(src._execGrade), _signGrade(src._signGrade) {
+_execGrade(src._execGrade), _signGrade(src._signGrade), _target(src._target) {
 
         if (this->_signGrade > 150 || this->_execGrade > 150)
             throw AForm::GradeTooLowException();
@@ -32,8 +34,8 @@ _execGrade(src._execGrade), _signGrade(src._signGrade) {
 
 }
 
-AForm::AForm(const std::string& name, int execGrade, int signGrade):
-_name(name), _signed(0), _execGrade(execGrade), _signGrade(signGrade) {
+AForm::AForm(const std::string& name, int execGrade, int signGrade, std::string target):
+_name(name), _signed(false), _execGrade(execGrade), _signGrade(signGrade), _target(target) {
 
     if (this->_signGrade > 150 || this->_execGrade > 150)
             throw AForm::GradeTooLowException();
@@ -42,17 +44,34 @@ _name(name), _signed(0), _execGrade(execGrade), _signGrade(signGrade) {
 
 }
 
-AForm::AForm(const std::string& name, int execGrade, int signGrade, std::string target):
-_name(name), _signed(false), _execGrade(execGrade), _signGrade(signGrade), _target(target) {
+/* ************************************************************************** */
 
-}
+/* *********************** OPERATORS **************************************** */
 
 AForm& AForm::operator=(const AForm& src) {
     (void)src;
     std::cout << "Cannot assign a form to another because of const attributes";
     std::cout << std::endl;
     return (*this);
+
 }
+
+std::ostream& operator<<(std::ostream& out, const AForm& form) {
+
+    std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
+                << form.getSignGrade() << " and executed with a grade higher than "
+                << form.getExecGrade() << ". ";
+    std::cout << "It's currently ";
+    if (!form.isSigned()) {
+        std::cout << "not ";
+    }
+    std::cout << "signed.";
+    return (out);
+}
+
+/* ************************************************************************** */
+
+/* ************************ GETTERS ***************************************** */
 
 std::string AForm::getName() const {
 
@@ -77,6 +96,10 @@ bool AForm::isSigned() const {
 
 }
 
+/* ************************************************************************** */
+
+/* ************************ FORM ACTIONS ************************************ */
+
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
 
     if (bureaucrat.getGrade() > _signGrade)
@@ -84,6 +107,10 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
     _signed = true;
 
 }
+
+/* ************************************************************************** */
+
+/* ************************** EXCEPTIONS ************************************ */
 
 const char* AForm::GradeTooLowException::what() const throw() {
     return ("Form: Exception: grade too low.");
@@ -93,14 +120,8 @@ const char* AForm::GradeTooHighException::what() const throw() {
     return ("Form: Exception: grade too high.");
 }
 
-std::ostream& operator<<(std::ostream& out, const AForm& form) {
-    std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
-                << form.getSignGrade() << " and executed with a grade higher than "
-                << form.getExecGrade() << ". ";
-    std::cout << "It's currently ";
-    if (!form.isSigned()) {
-        std::cout << "not ";
-    }
-    std::cout << "signed.";
-    return (out);
+const char* AForm::UnsignedFormException::what() const throw() {
+    return ("Form: Exception: form is not signed.");
 }
+
+/* ************************************************************************** */
