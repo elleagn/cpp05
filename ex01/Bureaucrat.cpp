@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:08:16 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:34:29 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void Bureaucrat::demote() {
 void Bureaucrat::signForm(Form& form) const {
     if (form.isSigned()) {
         std::cout   << _name << " couldn't sign " << form.getName()
-                    << " because it's already signed.";
+                    << " because it's already signed.\n";
+        return ;
     }
     try {
         form.beSigned(*this);
@@ -84,7 +85,7 @@ void Bureaucrat::signForm(Form& form) const {
     }
     catch (std::exception& e) {
         std::cout   << _name << " couldn't sign " << form.getName()
-                    << " because the required grade was too high.";
+                    << " because the required grade was too high.\n";
     }
 }
 

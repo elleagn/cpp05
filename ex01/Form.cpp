@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:06:13 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:58:09 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:42:00 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool Form::isSigned() const {
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
 
-    if (bureaucrat.getGrade() > _execGrade)
+    if (bureaucrat.getGrade() > _signGrade)
         throw Form::GradeTooLowException();
     _signed = true;
 
@@ -90,8 +90,8 @@ const char* Form::GradeTooHighException::what() const throw() {
 
 std::ostream& operator<<(std::ostream& out, const Form& form) {
     std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
-                << form.getExecGrade() << " and executed with a grade higher than "
-                << form.getSignGrade() << ". ";
+                << form.getSignGrade() << " and executed with a grade higher than "
+                << form.getExecGrade() << ". ";
     std::cout << "It's currently ";
     if (!form.isSigned()) {
         std::cout << "not ";

@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 09:18:15 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:47:04 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:41:24 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,37 @@ int main(void) {
         std::cout << BLUE << e.what() << RESET << std::endl;
     }
 
+    std::cout << "\nPART 2: Form signing\n" << std::endl;
+
+    Bureaucrat mary("Mary", 21);
+    std::cout << mary << std::endl;
+    Bureaucrat john("John", 24);
+    std::cout << john << std::endl;
+
     std::cout << "\nTest 5 - Overload operator:\n";
     Form form("MyForm", 32, 23);
-    std::cout << form << std::endl << std::endl;
+    std::cout << BLUE << form << RESET << std::endl << std::endl;
+
+    std::cout << "Test 6 - Trying to sign form with a grade too low:\n" << BLUE;
+    john.signForm(form);
+    if (!form.isSigned()) {
+        std::cout << GREEN << "OK.\n" << RESET;
+    }
+    else {
+        std::cout << RED << "FAILED.\n" << RESET;
+    }
+    std::cout << "Test 7 - Signing form with a satisfying grade:\n" << BLUE;
+    mary.signForm(form);
+    if (form.isSigned()) {
+        std::cout << GREEN << "OK.\n" << RESET;
+    }
+    else {
+        std::cout << RED << "FAILED.\n" << RESET;
+    }
+    std::cout << "Test 7 - Trying to sign an already signed form:\n" << BLUE;
+    mary.signForm(form);
+
+    std::cout << std::endl;
     return (0);
 
 }
