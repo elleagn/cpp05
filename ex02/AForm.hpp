@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 19:03:09 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 22:26:18 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ class AForm {
 
     private:
 
-        std::string const _name;
-        bool _signed;
-        int const _execGrade;
-        int const _signGrade;
+        std::string const   _name;
+        bool                _signed;
+        int const           _execGrade;
+        int const           _signGrade;
+        std::string const   _target;
+
+    protected:
+        virtual void doSomething() = 0;
 
     public:
 
@@ -41,13 +45,14 @@ class AForm {
         ~AForm();
         AForm(const AForm& src);
         AForm(const std::string& name, int execGrade, int signGrade);
+        AForm(const std::string& name, int execGrade, int signGrade, std::string target);
 
         AForm& operator=(const AForm& src);
 
         std::string getName() const;
         int         getExecGrade() const;
         int         getSignGrade() const;
-bool                isSigned() const;
+        bool        isSigned() const;
 
         void    beSigned(const Bureaucrat& bureaucrat);
 

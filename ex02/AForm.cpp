@@ -42,6 +42,11 @@ _name(name), _signed(0), _execGrade(execGrade), _signGrade(signGrade) {
 
 }
 
+AForm::AForm(const std::string& name, int execGrade, int signGrade, std::string target):
+_name(name), _signed(false), _execGrade(execGrade), _signGrade(signGrade), _target(target) {
+
+}
+
 AForm& AForm::operator=(const AForm& src) {
     (void)src;
     std::cout << "Cannot assign a form to another because of const attributes";
