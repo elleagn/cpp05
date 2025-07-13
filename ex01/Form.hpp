@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:51:24 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:55:45 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class Form {
         int         getSignGrade() const;
 bool                isSigned() const;
 
-        void    beSigned(const Bureaucrat bureaucrat);
+        void    beSigned(const Bureaucrat& bureaucrat);
 
         class GradeTooHighException: public std::exception {
             const char* what() const throw();

@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/12 17:41:20 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:02:04 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #define RESET "\033[0m"
 #define GREEN "\033[32m"
 #define BLUE "\033[34m"
+
+class Form;
 
 class Bureaucrat {
 
@@ -44,10 +46,12 @@ class Bureaucrat {
         Bureaucrat& operator=(const Bureaucrat& src);
 
         std::string getName() const;
-        int getGrade() const;
+        int         getGrade() const;
 
         void promote();
         void demote();
+
+        void    signForm(Form& form) const;
 
         class GradeTooHighException: public std::exception {
             const char* what() const throw();
@@ -56,6 +60,7 @@ class Bureaucrat {
         class GradeTooLowException: public std::exception {
             const char* what() const throw();
         };
+
 
 };
 

@@ -6,11 +6,12 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/12 17:59:06 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:08:16 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 bool Bureaucrat::_setGrade(int grade) {
 
@@ -70,6 +71,21 @@ void Bureaucrat::demote() {
     std::cout << "Bureaucrat " << this->_name << " has been demoted to grade ";
     std::cout << this->_grade << std::endl;
 
+}
+
+void Bureaucrat::signForm(Form& form) const {
+    if (form.isSigned()) {
+        std::cout   << _name << " couldn't sign " << form.getName()
+                    << " because it's already signed.";
+    }
+    try {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << ".\n";
+    }
+    catch (std::exception& e) {
+        std::cout   << _name << " couldn't sign " << form.getName()
+                    << " because the required grade was too high.";
+    }
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {

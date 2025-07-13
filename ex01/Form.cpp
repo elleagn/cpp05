@@ -6,11 +6,12 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:06:13 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:47:34 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:58:09 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(): _name("undefined"), _signed(0), _execGrade(150),
 _signGrade(150) {
@@ -68,6 +69,14 @@ int Form::getSignGrade() const {
 bool Form::isSigned() const {
 
     return (this->_signed);
+
+}
+
+void Form::beSigned(const Bureaucrat& bureaucrat) {
+
+    if (bureaucrat.getGrade() > _execGrade)
+        throw Form::GradeTooLowException();
+    _signed = true;
 
 }
 
