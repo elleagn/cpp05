@@ -6,13 +6,13 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:06:13 by gozon             #+#    #+#             */
-/*   Updated: 2025/05/26 18:29:57 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:23:21 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(): _name("undefined"), _isSigned(0), _execGrade(150), 
+Form::Form(): _name("undefined"), _signed(0), _execGrade(150),
 _signGrade(150) {
 
 }
@@ -21,30 +21,31 @@ Form::~Form() {
 
 }
 
-Form::Form(const Form& src): _name(src._name), _isSigned(src._isSigned), 
+Form::Form(const Form& src): _name(src._name), _signed(src._signed),
 _execGrade(src._execGrade), _signGrade(src._signGrade) {
 
-    try {
         if (this->_signGrade > 150 || this->_execGrade > 150)
             throw Form::GradeTooLowException();
         if (this->_signGrade < 1 || this->_execGrade < 1)
             throw Form::GradeTooHighException();
-    }
-    catch (std::exception &e) {
-    }
-    
+
 }
 
-Form::Form(const std::string& name, int execGrade, int signGrade): 
-_name(name), _isSigned(0), _execGrade(execGrade), _signGrade(signGrade) {
+Form::Form(const std::string& name, int execGrade, int signGrade):
+_name(name), _signed(0), _execGrade(execGrade), _signGrade(signGrade) {
+
+    if (this->_signGrade > 150 || this->_execGrade > 150)
+            throw Form::GradeTooLowException();
+    if (this->_signGrade < 1 || this->_execGrade < 1)
+        throw Form::GradeTooHighException();
 
 }
 
 Form& Form::operator=(const Form& src) {
-
+    (void)src;
     std::cout << "Cannot assign a form to another because of const attributes";
     std::cout << std::endl;
-
+    return (*this);
 }
 
 std::string Form::getName() const {
@@ -55,7 +56,7 @@ std::string Form::getName() const {
 int Form::getExecGrade() const {
 
     return (this->_execGrade);
-    
+
 }
 
 int Form::getSignGrade() const {
@@ -64,16 +65,16 @@ int Form::getSignGrade() const {
 
 }
 
-bool Form::getStatus() const {
-    
-    return (this->_isSigned);
-    
+bool Form::isSigned() const {
+
+    return (this->_signed);
+
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-    return ("Exception: grade too low.");
+    return ("Form: Exception: grade too low.");
 }
 
 const char* Form::GradeTooHighException::what() const throw() {
-    return ("Exception: grade too high.");
+    return ("Form: Exception: grade too high.");
 }
