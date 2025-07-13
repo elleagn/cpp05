@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:19:19 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:51:24 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #define RESET "\033[0m"
 #define GREEN "\033[32m"
 #define BLUE "\033[34m"
+
+class Bureaucrat;
 
 class Form {
 
@@ -43,9 +45,11 @@ class Form {
         Form& operator=(const Form& src);
 
         std::string getName() const;
-        int getExecGrade() const;
-        int getSignGrade() const;
-        bool isSigned() const;
+        int         getExecGrade() const;
+        int         getSignGrade() const;
+bool                isSigned() const;
+
+        void    beSigned(const Bureaucrat bureaucrat);
 
         class GradeTooHighException: public std::exception {
             const char* what() const throw();
@@ -57,6 +61,6 @@ class Form {
 
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& bureaucrat);
+std::ostream& operator<<(std::ostream& out, const Form& form);
 
 #endif

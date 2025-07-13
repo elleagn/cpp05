@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 09:18:15 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:22:32 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:47:04 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int main(void) {
         std::cout << BLUE << e.what() << RESET << std::endl;
     }
 
+    std::cout << "\nTest 5 - Overload operator:\n";
+    Form form("MyForm", 32, 23);
+    std::cout << form << std::endl << std::endl;
     return (0);
 
 }

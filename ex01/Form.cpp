@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:06:13 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:23:21 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 17:47:34 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,16 @@ const char* Form::GradeTooLowException::what() const throw() {
 
 const char* Form::GradeTooHighException::what() const throw() {
     return ("Form: Exception: grade too high.");
+}
+
+std::ostream& operator<<(std::ostream& out, const Form& form) {
+    std::cout   << "Form " << form.getName() << " can be signed with a grade higher than "
+                << form.getExecGrade() << " and executed with a grade higher than "
+                << form.getSignGrade() << ". ";
+    std::cout << "It's currently ";
+    if (!form.isSigned()) {
+        std::cout << "not ";
+    }
+    std::cout << "signed.";
+    return (out);
 }
