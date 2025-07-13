@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:02:04 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:53:38 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define GREEN "\033[32m"
 #define BLUE "\033[34m"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -51,7 +51,7 @@ class Bureaucrat {
         void promote();
         void demote();
 
-        void    signForm(Form& form) const;
+        void    signForm(AForm& form) const;
 
         class GradeTooHighException: public std::exception {
             const char* what() const throw();

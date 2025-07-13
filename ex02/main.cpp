@@ -6,12 +6,12 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 09:18:15 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:41:24 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 19:02:37 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 int main(void) {
 
@@ -19,7 +19,7 @@ int main(void) {
 
     std::cout << "Test 1 - Creating a valid form: ";
     try {
-        Form form("MyForm", 32, 23);
+        AForm form("MyForm", 32, 23);
         if (form.getName() == "MyForm" && form.getExecGrade() == 32
                 && form.getSignGrade() == 23 && !form.isSigned()) {
         std::cout << GREEN << "OK" << RESET << std::endl;
@@ -34,7 +34,7 @@ int main(void) {
 
     std::cout << "Test 2 - Form with an execGrade too high: ";
     try {
-        Form form("MyForm", 0, 23);
+        AForm form("MyForm", 0, 23);
         std::cout << RED << "FAILED: no exception was thrown" << RESET << std::endl;
     }
     catch (std::exception& e) {
@@ -44,7 +44,7 @@ int main(void) {
 
     std::cout << "Test 3 - Form with an execGrade too low: ";
     try {
-        Form form("MyForm", 151, 23);
+        AForm form("MyForm", 151, 23);
         std::cout << RED << "FAILED: no exception was thrown" << RESET << std::endl;
     }
     catch (std::exception& e) {
@@ -54,7 +54,7 @@ int main(void) {
 
     std::cout << "Test 3 - Form with a signGrade too high: ";
     try {
-        Form form("MyForm", 1, 0);
+        AForm form("MyForm", 1, 0);
         std::cout << RED << "FAILED: no exception was thrown" << RESET << std::endl;
     }
     catch (std::exception& e) {
@@ -64,7 +64,7 @@ int main(void) {
 
     std::cout << "Test 4 - Form with a signGrade too low: ";
     try {
-        Form form("MyForm", 1, 151);
+        AForm form("MyForm", 1, 151);
         std::cout << RED << "FAILED: no exception was thrown" << RESET << std::endl;
     }
     catch (std::exception& e) {
@@ -80,7 +80,7 @@ int main(void) {
     std::cout << john << std::endl;
 
     std::cout << "\nTest 5 - Overload operator:\n";
-    Form form("MyForm", 32, 23);
+    AForm form("MyForm", 32, 23);
     std::cout << BLUE << form << RESET << std::endl << std::endl;
 
     std::cout << "Test 6 - Trying to sign form with a grade too low:\n" << BLUE;

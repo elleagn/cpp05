@@ -6,12 +6,12 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:34:29 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 18:52:47 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 bool Bureaucrat::_setGrade(int grade) {
 
@@ -73,7 +73,7 @@ void Bureaucrat::demote() {
 
 }
 
-void Bureaucrat::signForm(Form& form) const {
+void Bureaucrat::signForm(AForm& form) const {
     if (form.isSigned()) {
         std::cout   << _name << " couldn't sign " << form.getName()
                     << " because it's already signed.\n";

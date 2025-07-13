@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 17:55:45 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/13 19:03:09 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 
     private:
 
@@ -37,12 +37,12 @@ class Form {
 
     public:
 
-        Form();
-        ~Form();
-        Form(const Form& src);
-        Form(const std::string& name, int execGrade, int signGrade);
+        AForm();
+        ~AForm();
+        AForm(const AForm& src);
+        AForm(const std::string& name, int execGrade, int signGrade);
 
-        Form& operator=(const Form& src);
+        AForm& operator=(const AForm& src);
 
         std::string getName() const;
         int         getExecGrade() const;
@@ -61,6 +61,6 @@ bool                isSigned() const;
 
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& form);
+std::ostream& operator<<(std::ostream& out, const AForm& form);
 
 #endif
