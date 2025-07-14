@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/14 10:02:45 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:25:42 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class AForm {
         std::string const   _target;
 
     protected:
-        virtual void doSomething(const Bureaucrat& executor) const = 0;
+        virtual void doSomething() const = 0;
 
     public:
 

@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 09:18:15 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/14 19:10:04 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:30:06 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <unistd.h>
 
 int main(void) {
@@ -79,6 +80,30 @@ int main(void) {
         }
     }
 
+    std::cout << "\nPART 3: Presidential Pardon Form\n" << std::endl;
+    {
+        std::cout << "Test 8 - Form creation: ";
+        PresidentialPardonForm presidential("blbl");
+        if (presidential.getName() == "Presidential Pardon" && presidential.getSignGrade() == 25
+                && presidential.getExecGrade() == 5 && presidential.getTarget() == "blbl")
+            std::cout << GREEN << "OK." << RESET << std::endl;
+        else
+            std::cout << RED << "FAILED." << RESET << std::endl;
+
+        std::cout << "Test 9 - Executing an unsigned form:\n" << BLUE;
+        mary.executeForm(presidential);
+        std::cout << std::endl << RESET;
+
+        mary.signForm(presidential);
+        std::cout << std::endl;
+
+        std::cout << "Test 10 - Executing a form with an insufficient grade:\n" << BLUE;
+        john.executeForm(presidential);
+
+        std::cout << RESET << "Test 11 - Executing a signed form with a valid bureaucrat:\n" << BLUE;
+        mary.executeForm(presidential);
+        std::cout << std::endl << RESET;
+    }
 
     return (0);
 
