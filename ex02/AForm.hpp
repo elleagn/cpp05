@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 22:40:48 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 08:11:15 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ class AForm {
         std::string const   _target;
 
     protected:
-        virtual void doSomething() = 0;
+        virtual void doSomething(const Bureaucrat& executor) = 0;
 
     public:
 
         AForm();
-        ~AForm();
+        virtual ~AForm();
         AForm(const AForm& src);
-        AForm(const std::string& name, int execGrade, int signGrade);
         AForm(const std::string& name, int execGrade, int signGrade, std::string target);
 
         AForm& operator=(const AForm& src);
@@ -53,6 +52,7 @@ class AForm {
         int         getExecGrade() const;
         int         getSignGrade() const;
         bool        isSigned() const;
+        std::string getTarget() const;
 
         void    beSigned(const Bureaucrat& bureaucrat);
 

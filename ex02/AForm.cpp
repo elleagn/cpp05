@@ -16,7 +16,7 @@
 /* ************************ CONSTRUCTORS / DESTRUCTORS ********************** */
 
 AForm::AForm(): _name("undefined"), _signed(0), _execGrade(150),
-_signGrade(150) {
+_signGrade(150), _target("none") {
 
 }
 
@@ -93,6 +93,12 @@ int AForm::getSignGrade() const {
 bool AForm::isSigned() const {
 
     return (this->_signed);
+
+}
+
+std::string AForm::getTarget() const {
+
+    return (_target);
 
 }
 
