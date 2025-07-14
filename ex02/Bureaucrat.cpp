@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:22:58 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 22:54:01 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 12:34:08 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,20 @@ void Bureaucrat::signForm(AForm& form) const {
         std::cout   << _name << " couldn't sign " << form.getName()
                     << " because the required grade was too high.\n";
     }
+}
+
+void Bureaucrat::executeForm(const AForm& form) const {
+
+    try {
+        form.execute(*this);
+        std::cout << _name << " executed " << form.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout   << _name << " couldn't execute " << form.getName()
+                    << " because the following exception was thrown:\n"
+                    << RED << e.what() << RESET << std::endl;
+    }
+
 }
 
 /* ************************************************************************** */

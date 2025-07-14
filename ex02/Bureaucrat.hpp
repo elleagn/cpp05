@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 08:55:33 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/13 18:53:38 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 12:23:06 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ class Bureaucrat {
         void demote();
 
         void    signForm(AForm& form) const;
+        void    executeForm(const AForm& form) const;
 
         class GradeTooHighException: public std::exception {
             const char* what() const throw();
