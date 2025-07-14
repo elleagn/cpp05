@@ -6,14 +6,15 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2025/07/14 08:29:06 by gozon            ###   ########.fr        #
+#    Updated: 2025/07/14 18:29:22 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ex02
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98 -fPIE
-SRC_FILES =  Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp main.cpp
+SRC_FILES =	Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp main.cpp
 OBJ_DIR = objects
 OBJ = $(SRC_FILES:%.cpp=$(OBJ_DIR)/%.o)
 

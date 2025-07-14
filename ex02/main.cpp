@@ -6,13 +6,14 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 09:18:15 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/14 12:37:22 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:10:04 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include <unistd.h>
 
 int main(void) {
@@ -49,6 +50,33 @@ int main(void) {
         else
             std::cout << RED << "FAILED: couldn't find file\n" << RESET;
 
+    }
+
+    std::cout << "\nPART 2: Robotomy Request Form\n" << std::endl;
+    {
+        std::cout << "Test 5 - Form creation: ";
+        RobotomyRequestForm robotomy("blbl");
+        if (robotomy.getName() == "Robotomy Request" && robotomy.getSignGrade() == 72
+                && robotomy.getExecGrade() == 45 && robotomy.getTarget() == "blbl")
+            std::cout << GREEN << "OK." << RESET << std::endl;
+        else
+            std::cout << RED << "FAILED." << RESET << std::endl;
+
+        std::cout << "Test 6 - Executing an unsigned form:\n" << BLUE;
+        mary.executeForm(robotomy);
+        std::cout << std::endl << RESET;
+
+        mary.signForm(robotomy);
+        std::cout << std::endl;
+
+        std::cout << "Test 7 - Executing a form with an insufficient grade:\n" << BLUE;
+        john.executeForm(robotomy);
+
+        std::cout << RESET << "Test 8 - Executing a signed robotomy with a valid bureaucrat several times:\n";
+        for (int i = 0; i < 10; i++) {
+            mary.executeForm(robotomy);
+            usleep(1000010); // because we use the time as seed
+        }
     }
 
 
