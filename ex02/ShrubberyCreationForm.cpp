@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 07:58:38 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/14 12:12:03 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:19:55 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 /* ************************ FORM ACTIONS ************************************ */
 
-void ShrubberyCreationForm::doSomething(const Bureaucrat& executor) const {
-
-    (void)executor;
+void ShrubberyCreationForm::doSomething() const {
 
     std::ifstream tree("tree.txt");
     if (!tree.is_open()) {

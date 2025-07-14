@@ -6,7 +6,7 @@
 /*   By: gozon <gozon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 07:58:44 by gozon             #+#    #+#             */
-/*   Updated: 2025/07/14 10:03:22 by gozon            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:19:39 by gozon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Bureaucrat;
 class ShrubberyCreationForm: public AForm {
 
     protected:
-        void doSomething(const Bureaucrat& executor) const;
+        void doSomething() const;
 
     public:
         ShrubberyCreationForm();
