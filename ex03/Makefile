@@ -6,18 +6,19 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2025/07/15 09:53:49 by gozon            ###   ########.fr        #
+#    Updated: 2025/07/15 17:57:33 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ex03
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98 -fPIE
-SRC_FILES =	Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp PresidentialPardonForm.cpp \
-			Intern.cpp main.cpp
+CPP =	Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp PresidentialPardonForm.cpp \
+		Intern.cpp main.cpp
 OBJ_DIR = objects
-OBJ = $(SRC_FILES:%.cpp=$(OBJ_DIR)/%.o)
+OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
+DEP = $(OBJ:%.o=%.d)
 
 # Symboles Unicode
 CHECK_MARK = ✔
@@ -28,11 +29,9 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME)
 	@echo "$(NAME) a été créé avec succès ($(CHECK_MARK))"
 
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -45,4 +44,5 @@ fclean:
 
 re: fclean all
 
+-include $(DEP)
 .PHONY: all clean fclean re
