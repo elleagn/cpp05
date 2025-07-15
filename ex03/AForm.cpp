@@ -120,7 +120,7 @@ void    AForm::execute(const Bureaucrat& executor) const {
         throw AForm::UnsignedFormException();
     if (executor.getGrade() > _execGrade)
         throw AForm::GradeTooLowException();
-    doSomething(executor);
+    doSomething();
 
 }
 
