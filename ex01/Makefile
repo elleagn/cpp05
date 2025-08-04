@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = ex01
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98
 CPP = Bureaucrat.cpp Form.cpp main.cpp
 OBJ_DIR = objects
